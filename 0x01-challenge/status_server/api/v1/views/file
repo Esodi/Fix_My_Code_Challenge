@@ -1,0 +1,25 @@
+× mariadb.service - MariaDB 10.11.6 database server
+     Loaded: loaded (/lib/systemd/system/mariadb.service; enabled; preset: disabled)
+     Active: failed (Result: exit-code) since Sun 2024-04-14 21:57:34 EAT; 1min 30s ago
+       Docs: man:mariadbd(8)
+             https://mariadb.com/kb/en/library/systemd/
+    Process: 15712 ExecStartPre=/usr/bin/install -m 755 -o mysql -g root -d /var/run/mysqld (code=exited, status=0/SUCCESS)
+    Process: 15713 ExecStartPre=/bin/sh -c systemctl unset-environment _WSREP_START_POSITION (code=exited, status=0/SUCCESS)
+    Process: 15715 ExecStartPre=/bin/sh -c [ ! -e /usr/bin/galera_recovery ] && VAR= ||   VAR=`cd /usr/bin/..; /usr/bin/galera_recovery`; [ $? -eq 0 ]   && systemctl set-environment _WSREP_START_POSITION=$VAR || exit 1 (code=exited, status=0/SUCCESS)
+    Process: 15723 ExecStart=/usr/sbin/mariadbd $MYSQLD_OPTS $_WSREP_NEW_CLUSTER $_WSREP_START_POSITION (code=exited, status=0/SUCCESS)
+    Process: 15734 ExecStartPost=/bin/sh -c systemctl unset-environment _WSREP_START_POSITION (code=exited, status=0/SUCCESS)
+    Process: 15736 ExecStartPost=/etc/mysql/debian-start (code=exited, status=203/EXEC)
+   Main PID: 15723 (code=exited, status=0/SUCCESS)
+     Status: "MariaDB server is down"
+        CPU: 176ms
+
+Apr 14 21:57:34 Egao mariadbd[15723]: 2024-04-14 21:57:34 0 [Note] /usr/sbin/mariadbd (initiated by: unknown): Normal shutdown
+Apr 14 21:57:34 Egao mariadbd[15723]: 2024-04-14 21:57:34 0 [Note] InnoDB: FTS optimize thread exiting.
+Apr 14 21:57:34 Egao mariadbd[15723]: 2024-04-14 21:57:34 0 [Note] InnoDB: Starting shutdown...
+Apr 14 21:57:34 Egao mariadbd[15723]: 2024-04-14 21:57:34 0 [Note] InnoDB: Dumping buffer pool(s) to /var/lib/mysql/ib_buffer_pool
+Apr 14 21:57:34 Egao mariadbd[15723]: 2024-04-14 21:57:34 0 [Note] InnoDB: Buffer pool(s) dump completed at 240414 21:57:34
+Apr 14 21:57:34 Egao mariadbd[15723]: 2024-04-14 21:57:34 0 [Note] InnoDB: Removed temporary tablespace data file: "./ibtmp1"
+Apr 14 21:57:34 Egao mariadbd[15723]: 2024-04-14 21:57:34 0 [Note] InnoDB: Shutdown completed; log sequence number 46980; transaction id 15
+Apr 14 21:57:34 Egao mariadbd[15723]: 2024-04-14 21:57:34 0 [Note] /usr/sbin/mariadbd: Shutdown complete
+Apr 14 21:57:34 Egao systemd[1]: mariadb.service: Failed with result 'exit-code'.
+Apr 14 21:57:34 Egao systemd[1]: Failed to start mariadb.service - MariaDB 10.11.6 database server.
